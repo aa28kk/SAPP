@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">Register</h2>
+<form method="POST">
+  <input name="username" placeholder="Username" class="border p-2 mb-2 w-full" required>
+  <input name="password" type="password" placeholder="Password" class="border p-2 mb-2 w-full" required>
+  <button class="bg-blue-600 text-white px-4 py-2">Register</button>
+</form>
+<a href="/login">Login</a>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="text-2xl font-bold mb-4">Your Sessions</h2>
+
+<a href="/add_session" class="bg-blue-600 text-white px-4 py-2 rounded">
+  Add Session
+</a>
+
+<canvas id="scoreChart" class="mt-6"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+new Chart(document.getElementById('scoreChart'), {
+  type: 'line',
+  data: {
+    labels: {{ labels | safe }},
+    datasets: [{
+      label: 'Average Score',
+      data: {{ averages | safe }},
+      borderWidth: 2
+    }]
+  }
+});
+</script>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+{% for session in sessions %}
+  <div class="bg-white p-4 rounded shadow">
+    <p><strong>Scores:</strong> {{ session.scores }}</p>
+    <p><strong>AI Feedback:</strong></p>
+    <p>{{ session.ai_feedback }}</p>
+  </div>
+{% endfor %}
+</div>
+
+{% endblock %}
